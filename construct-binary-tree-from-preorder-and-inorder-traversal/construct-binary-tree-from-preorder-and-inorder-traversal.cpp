@@ -11,31 +11,31 @@
  */
 class Solution {
 public:
-    TreeNode* build(vector<int> preorder,vector<int> inorder,int &i,int s,int e)
+    TreeNode* helper(vector<int>&pre,vector<int>& ino,int s,int e,int &i)
     {
         if(s>e)
         {
             return NULL;
         }
-        TreeNode* root=new TreeNode(preorder[i]);
-        int index=-1;
+        TreeNode* root=new TreeNode(pre[i]);
+        int index=0;
         for(int j=s;j<=e;j++)
         {
-            if(inorder[j]==preorder[i])
+            if(ino[j]==pre[i])
             {
                 index=j;
                 break;
             }
         }
         i++;
-        root->left=build(preorder,inorder,i,s,index-1);
-        root->right=build(preorder,inorder,i,index+1,e);
+        root->left=helper(pre,ino,s,index-1,i);
+        root->right=helper(pre,ino,index+1,e,i);
         return root;
     }
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        int i=0;
-        int s=0;
-        int e=inorder.size()-1;
-        return build(preorder,inorder,i,s,e);
+    int i=0;
+    int s=0;
+    int e=inorder.size()-1;
+    return helper(preorder,inorder,s,e,i);
     }
 };
