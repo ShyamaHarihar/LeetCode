@@ -13,11 +13,13 @@ class Solution {
 public:
     vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
     vector<vector<int>> res;
-        if(root==NULL)
-        {
-            return res;
-        }
         queue<TreeNode*> q;
+        //Corner Case to return empty vector
+    if(root==NULL)
+    {
+        return res;
+    }
+        //BFS
         q.push(root);
         int level=1;
         while(!q.empty())
@@ -29,14 +31,20 @@ public:
                 TreeNode* f=q.front();
                 r[i]=f->val;
                 q.pop();
-                if(f->left)
+                if(f->left!=NULL)
+                {
                     q.push(f->left);
+                }
                 if(f->right)
+                {
                     q.push(f->right);
+                }
             }
             level++;
             if(level%2==1)
+            {
                 reverse(r.begin(),r.end());
+            }
             res.push_back(r);
         }
         return res;
