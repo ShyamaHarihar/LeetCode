@@ -1,3 +1,4 @@
+[Discussion Post (created on 2/4/2021 at 10:47)](https://leetcode.com/problems/delete-node-in-a-bst/discuss/1187008/Fully-Explained-C%2B%2B-or-Faster-than-88-or-Comments-and-Clean-Code)  
 <h2>450. Delete Node in a BST</h2><h3>Medium</h3><hr><div><p>Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.</p>
 
 <p>Basically, the deletion can be divided into two stages:</p>
