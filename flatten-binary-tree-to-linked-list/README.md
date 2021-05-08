@@ -1,3 +1,4 @@
+[Discussion Post (created on 8/4/2021 at 20:22)](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/discuss/1197805/C%2B%2B-or-DFS-or-Clean-Code-or-Fully-explained)  
 <h2>114. Flatten Binary Tree to Linked List</h2><h3>Medium</h3><hr><div><p>Given the <code>root</code> of a binary tree, flatten the tree into a "linked list":</p>
 
 <ul>
