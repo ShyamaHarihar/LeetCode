@@ -11,28 +11,29 @@
  */
 class Solution {
 public:
-    vector<int> v;
-    void inorder(TreeNode* root)
+    void helper(TreeNode* root,vector<int>& res)
     {
         if(root==NULL)
         {
             return;
         }
-        inorder(root->left);
-        v.push_back(root->val);
-        inorder(root->right);
+        helper(root->left,res);
+        res.push_back(root->val);
+        helper(root->right,res);
     }
     bool isValidBST(TreeNode* root) {
-    inorder(root);
-    vector<int> t=v;
-    std::sort(t.begin(),t.end());
-        for(int i=1;i<t.size();i++)
+    vector<int> res;
+    vector<int> res1;
+        helper(root,res);
+        res1=res;
+        sort(res.begin(),res.end());
+        for(int i=1;i<res.size();i++)
         {
-        if(t[i-1]==t[i])
-        {
-            return false;
+            if(res[i]==res[i-1])
+            {
+                return false;
+            }
         }
-        }
-    return t==v;
+        return res1==res;
     }
 };
