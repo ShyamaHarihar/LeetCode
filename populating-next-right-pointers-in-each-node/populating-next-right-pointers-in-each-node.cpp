@@ -19,12 +19,12 @@ public:
 class Solution {
 public:
     Node* connect(Node* root) {
-    if(root==NULL)
-    {
-        return root;
-    }
-        queue<Node*> q;
-        q.push(root);
+    queue<Node*> q;
+    q.push(root);
+        if(root==NULL)
+        {
+            return NULL;
+        }
         while(!q.empty())
         {
             int n=q.size();
@@ -36,11 +36,11 @@ public:
                 {
                     f->next=q.front();
                 }
-                if(f->left!=NULL)
+                if(f->left)
                 {
                     q.push(f->left);
                 }
-                if(f->right!=NULL)
+                if(f->right)
                 {
                     q.push(f->right);
                 }
