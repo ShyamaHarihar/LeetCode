@@ -22,12 +22,12 @@ public:
         while(!q.empty())
         {
             int n=q.size();
-            vector<int> temp(n,0);
+            vector<int> r(n,0);
             for(int i=0;i<n;i++)
             {
                 TreeNode* f=q.front();
-                temp[i]=f->val;
                 q.pop();
+                r[i]=f->val;
                 if(f->left)
                 {
                     q.push(f->left);
@@ -37,7 +37,8 @@ public:
                     q.push(f->right);
                 }
             }
-            res.push_back(temp);
+            res.push_back(r);
+            
         }
         return res;
     }
