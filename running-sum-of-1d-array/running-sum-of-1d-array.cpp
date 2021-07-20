@@ -12,3 +12,16 @@ public:
         return res;
     }
 };
+/*O(n) time and space complexity*/
+
+class Solution {
+public:
+    vector<int> runningSum(vector<int>& nums) {
+        for(int i=1;i<nums.size();i++)
+        {
+            nums[i]=nums[i-1]+nums[i];
+        }
+        return nums;
+    }
+};
+O(n) and O(1) 
