@@ -18,8 +18,12 @@ public:
             s+=temp->val;
             temp=temp->next;
         }
-        string o=s;
+        string s1=s;
         reverse(s.begin(),s.end());
-        return s==o;
+        if(s==s1)
+        {
+            return true;
+        }
+        return false;
     }
 };
