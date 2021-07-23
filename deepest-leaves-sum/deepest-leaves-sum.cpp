@@ -11,42 +11,31 @@
  */
 class Solution {
 public:
-    vector<vector<int>> res;
-    vector<vector<int>> dfs(TreeNode* root)
-    {
-        if(root==NULL)
-        {
-            return res;
-        }
-        queue<TreeNode*> q;
+    int deepestLeavesSum(TreeNode* root) {
+      queue<TreeNode*> q;
         q.push(root);
+        int sum=0;
         while(!q.empty())
         {
             int n=q.size();
-            vector<int> r(n,0);
+            sum=0;
             for(int i=0;i<n;i++)
             {
                 TreeNode* f=q.front();
+                sum=sum+f->val;
                 q.pop();
-                r[i]=f->val;
                 if(f->left)
+                {
                     q.push(f->left);
+                }
                 if(f->right)
+                {
                     q.push(f->right);
+                }
             }
-            res.push_back(r);
-        }
-        return res;
-    }
-    int deepestLeavesSum(TreeNode* root) {
-    vector<vector<int>> a=dfs(root);
-    int n=a.size();
-    int m=a[n-1].size();
-        int sum=0;
-        for(int i=0;i<m;i++)
-        {
-            sum+=a[n-1][i];
+            
         }
         return sum;
+        
     }
 };
