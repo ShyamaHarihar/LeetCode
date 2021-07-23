@@ -19,39 +19,34 @@ public:
         }
         if(root->val%2==0)
         {
-            if(root->left!=NULL)
+            if(root->left)
             {
-                if(root->left->left!=NULL)
-                {
-                    sum+=root->left->left->val;
-                }
-                if(root->left->right!=NULL)
-                {
-                    sum+=root->left->right->val;
-                }
-            }
-            if(root->right!=NULL)
+            if(root->left->left)
             {
-                if(root->right->right!=NULL)
-                {
-                    sum+=root->right->right->val;
-                }
-                if(root->right->left!=NULL)
-                {
-                    sum+=root->right->left->val;
-                }
+                sum=sum+root->left->left->val;
             }
-            
+            if(root->left->right)
+            {
+                sum=sum+root->left->right->val;
+            }
+            }
+            if(root->right)
+            {
+            if(root->right->left)
+            {
+                sum=sum+root->right->left->val;
+            }
+            if(root->right->right)
+            {
+                sum=sum+root->right->right->val;
+            }
+            }
         }
         helper(root->left,sum);
-        helper(root->right,sum);
+        helper(root->right,sum);  
     }
     int sumEvenGrandparent(TreeNode* root) {
         int sum=0;
-        if(!root)
-        {
-            return sum;
-        }
         helper(root,sum);
         return sum;
     }
