@@ -11,22 +11,21 @@
  */
 class Solution {
 public:
-    vector<int> v;
-    void inorder(TreeNode* root,vector<int>& v)
+    void helper(TreeNode* root,vector<int>& res)
     {
         if(root==NULL)
         {
             return;
         }
-        inorder(root->left,v);
-        v.push_back(root->val);
-        inorder(root->right,v);
-        
+        helper(root->left,res);
+        res.push_back(root->val);
+        helper(root->right,res);
     }
     vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
-        inorder(root1,v);
-        inorder(root2,v);
-        sort(v.begin(),v.end());
-        return v;
+    vector<int> res;
+    helper(root1,res);
+    helper(root2,res);
+    sort(res.begin(),res.end());
+    return res;
     }
 };
