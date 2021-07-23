@@ -11,22 +11,20 @@
  */
 class Solution {
 public:
-    void reverseinorder(TreeNode* root,int &sum)
+    void helper(TreeNode* root,int &sum)
     {
-        if(root->right)
+        if(root==NULL)
         {
-            reverseinorder(root->right,sum);
+            return;
         }
+        helper(root->right,sum);
         sum=sum+root->val;
         root->val=sum;
-        if(root->left)
-        {
-            reverseinorder(root->left,sum);
-        }
+        helper(root->left,sum);
     }
     TreeNode* bstToGst(TreeNode* root) {
-        int sum=0;
-        reverseinorder(root,sum);
-        return root;
+    int sum=0;
+    helper(root,sum);
+    return root;
     }
 };
