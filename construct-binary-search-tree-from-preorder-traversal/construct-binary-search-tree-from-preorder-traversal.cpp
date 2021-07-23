@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    TreeNode* helper(vector<int>& pre,vector<int>& ino,int &i,int s,int e)
+    TreeNode* helper(int s,int e,vector<int> inorder,vector<int> pre,int& i)
     {
         if(s>e)
         {
@@ -21,25 +21,27 @@ public:
         TreeNode* root=new TreeNode(pre[i]);
         for(int j=s;j<=e;j++)
         {
-            if(ino[j]==pre[i])
+            if(pre[i]==inorder[j])
             {
                 index=j;
                 break;
             }
         }
         i++;
-        root->left=helper(pre,ino,i,s,index-1);
-        root->right=helper(pre,ino,i,index+1,e);
-        //return the final tree Node reference
+        root->left=helper(s,index-1,inorder,pre,i);
+        root->right=helper(index+1,e,inorder,pre,i);
+        
         return root;
     }
     TreeNode* bstFromPreorder(vector<int>& preorder) {
+    vector<int> inorder(preorder.size(),0);
+    vector<int> pre=preorder;
+    sort(preorder.begin(),preorder.end());
+    inorder=preorder;
     int s=0;
-    int i=0; 
-    vector<int> ino=preorder;
     int e=preorder.size()-1;
-    // sort(preorder.begin(),preorder.end());
-    sort(ino.begin(),ino.end());
-    return helper(preorder,ino,i,s,e);    
+    int i=0;
+    int j=0; 
+    return helper(s,e,inorder,pre,j);
     }
 };
