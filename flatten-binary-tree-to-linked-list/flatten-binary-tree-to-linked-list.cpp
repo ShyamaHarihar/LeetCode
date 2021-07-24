@@ -11,23 +11,22 @@
  */
 class Solution {
 public:
-    void helper(TreeNode* root,vector<TreeNode*>& v)
-    {
-        if(root==NULL)
-        {
-            return;
-        }
-        v.push_back(root);
-        helper(root->left,v);
-        helper(root->right,v);
-    }
     void flatten(TreeNode* root) {
-        vector<TreeNode*> v;
+     vector<TreeNode*> v;
         helper(root,v);
         for(int i=0;i<v.size();i++)
         {
             v[i]->left=NULL;
             v[i]->right=(i==v.size()-1)?NULL:v[i+1];
+            
         }
+    }
+    void helper(TreeNode* root,vector<TreeNode*>& v)
+    {
+        if(root==NULL)
+            return;
+        v.push_back(root);
+        helper(root->left,v);
+        helper(root->right,v);
     }
 };
