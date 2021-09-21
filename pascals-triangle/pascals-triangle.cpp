@@ -1,20 +1,18 @@
 class Solution {
 public:
     vector<vector<int>> generate(int numRows) {
-    //Create a vector of vectors to store the answers so that we can access previous answers
     vector<vector<int>> res;
-    //Now let us start creating each row
-    for(int i=0;i<numRows;i++)
-    {
-        //The number of elements in each row increase by 1 and lets initialise all to 1 
-        vector<int> row(i+1,1);
-        for(int j=1;j<i;j++)
+//a 2d vector array for storing the results
+//notice that the number of elements in each element increases by 1 and therefore initialise vector for each row
+        for(int i=0;i<numRows;i++)
         {
-            //add two values of previous row just above as shown in question
-            row[j]=res[i-1][j]+res[i-1][j-1];
+            vector<int> temp(i+1,1);//initally all are 1 and even the edge elements are 1
+            for(int j=1;j<i;j++)//won't run for first two runs
+            {
+                temp[j]=res[i-1][j]+res[i-1][j-1];//just see the pattern
+            }
+            res.push_back(temp);//add to final result
         }
-        res.push_back(row);//add the row to result vector
-    }
         return res;
     }
 };
