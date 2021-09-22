@@ -1,3 +1,4 @@
+[Discussion Post (created on 22/8/2021 at 18:21)](https://leetcode.com/problems/valid-sudoku/discuss/1478866/C%2B%2B-or-UnorderedSet-or-O(n*n)-or-o(n)-space)  
 <h2>36. Valid Sudoku</h2><h3>Medium</h3><hr><div><p>Determine if a&nbsp;<code>9 x 9</code> Sudoku board&nbsp;is valid.&nbsp;Only the filled cells need to be validated&nbsp;<strong>according to the following rules</strong>:</p>
 
 <ol>
