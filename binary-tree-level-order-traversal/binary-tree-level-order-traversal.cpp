@@ -17,8 +17,8 @@ public:
         {
             return res;
         }
-        queue<TreeNode*> q;
-        q.push(root);
+    queue<TreeNode*> q;
+    q.push(root);
         while(!q.empty())
         {
             int n=q.size();
@@ -26,8 +26,8 @@ public:
             for(int i=0;i<n;i++)
             {
                 TreeNode* f=q.front();
-                q.pop();
                 r[i]=f->val;
+                q.pop();
                 if(f->left)
                 {
                     q.push(f->left);
@@ -38,7 +38,6 @@ public:
                 }
             }
             res.push_back(r);
-            
         }
         return res;
     }
