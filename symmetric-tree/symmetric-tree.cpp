@@ -11,29 +11,32 @@
  */
 class Solution {
 public:
-    bool isMirror(TreeNode* l,TreeNode* r)
+    //l indicates left node and r indicates right node
+    bool helper(TreeNode* l,TreeNode* r)
     {
         if(l==NULL || r==NULL)
         {
             if(l==NULL && r==NULL)
             {
-                return true;
+                return true;//both are empty return true
             }
             else{
-                return false;
+                return false;//if either of them is NULL return false (bottom up)
             }
         }
         if(l->val != r->val)
         {
-            return false;
+            return false;//if either of them don't match in terms of value return false (bottom-up)
         }
-        return isMirror(l->left,r->right) && isMirror(l->right,r->left);
+        return helper(l->left,r->right) && helper(l->right,r->left);
     }
     bool isSymmetric(TreeNode* root) {
+    //If the root is NULL then the tree is considered to be symmetric
     if(root==NULL)
     {
         return true;
     }
-        return isMirror(root->left,root->right);
+    //now we can call the recursive functions for the left and right subtree by passing it to helper function
+    return helper(root->left,root->right);
     }
 };
