@@ -12,21 +12,18 @@
 class Solution {
 public:
     TreeNode* searchBST(TreeNode* root, int val) {
-     //Corner Case when the tree is empty
         if(root==NULL)
-     {
-         return root;
-     }
+        {
+            return NULL;
+        }
         if(root->val==val)
         {
             return root;
         }
-        else if(root->val<val)
+        else if(root->val>val)
         {
-            return searchBST(root->right,val);
-        }
-        else{
             return searchBST(root->left,val);
         }
+        return searchBST(root->right,val);
     }
 };
