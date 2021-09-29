@@ -11,24 +11,24 @@
  */
 class Solution {
 public:
-    bool flag=false;
-    void dfs(TreeNode* root,int sum)
+    void dfs(TreeNode* root,int targetSum,bool& flag)
     {
         if(root==NULL)
         {
             return;
         }
-        sum=sum-root->val;
-        if(root->left==NULL && root->right==NULL && sum==0)
+        targetSum=targetSum-root->val;
+        if(root->left==NULL && root->right==NULL && targetSum==0)
         {
             flag=true;
-            return;
         }
-        dfs(root->left,sum);
-        dfs(root->right,sum);
+        dfs(root->left,targetSum,flag);
+        dfs(root->right,targetSum,flag);
     }
     bool hasPathSum(TreeNode* root, int targetSum) {
-    dfs(root,targetSum);
-        return flag;
+    //We traverse this tree in DFS approach top down
+    bool flag=false;
+    dfs(root,targetSum,flag);
+    return flag;
     }
 };
