@@ -11,21 +11,31 @@
  */
 class Solution {
 public:
-    bool dfs(TreeNode* root,unordered_map<int,int>& map,int k)
+    void dfs(TreeNode* root,vector<int>& inorder)
     {
         if(root==NULL)
         {
-            return false;
+            return;
         }
-        if(map.find(k-root->val)!=map.end())
-        {
-            return true;
-        }
-        map[root->val]=root->val;
-        return dfs(root->left,map,k) || dfs(root->right,map,k);
+        dfs(root->left,inorder);
+        inorder.push_back(root->val);
+        dfs(root->right,inorder);
     }
     bool findTarget(TreeNode* root, int k) {
-    unordered_map<int,int> map;
-    return dfs(root,map,k);
+    vector<int> inorder;
+    dfs(root,inorder);
+        unordered_map<int,int> map;
+        for(int i=0;i<inorder.size();i++)
+        {
+            if(map.find(k-inorder[i])!=map.end())
+            {
+                return true;
+            }
+            else{
+                map[inorder[i]]=i;
+            }
+        }
+        return false;
+        
     }
 };
