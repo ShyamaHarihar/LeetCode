@@ -1,3 +1,4 @@
+[Discussion Post (created on 26/9/2021 at 23:40)](https://leetcode.com/problems/is-subsequence/discuss/1542204/Recursive-and-DP-Approach-or-C%2B%2B-or-4ms-or-LCS-Approach)  
 <h2>392. Is Subsequence</h2><h3>Easy</h3><hr><div><p>Given two strings <code>s</code> and <code>t</code>, check if <code>s</code> is a <strong>subsequence</strong> of <code>t</code>.</p>
 
 <p>A <strong>subsequence</strong> of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., <code>"ace"</code> is a subsequence of <code>"abcde"</code> while <code>"aec"</code> is not).</p>
