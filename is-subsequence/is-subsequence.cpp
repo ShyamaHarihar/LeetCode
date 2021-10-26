@@ -1,18 +1,34 @@
 class Solution {
 public:
-    bool isSubsequence(string s, string t) {
-    if(s.length()==0)
-    {
-        return true;
-    }
-        if(t.length()==0)
+    bool isSubsequence(string A, string B) {
+    int n=A.length();
+        int m=B.length();
+        int t[n+1][m+1];
+        for(int i=0;i<n+1;i++)
         {
-            return false;
+            t[i][0]=0;
         }
-        if(s[0]==t[0])
+        for(int j=0;j<m+1;j++)
         {
-            return isSubsequence(s.substr(1),t.substr(1));
+            t[0][j]=0;
         }
-        return isSubsequence(s,t.substr(1));
+        for(int i=1;i<n+1;i++)
+        {
+            for(int j=1;j<m+1;j++)
+            {
+                if(A[i-1]==B[j-1])
+                {
+                    t[i][j]=1+t[i-1][j-1];
+                }
+                else{
+                    t[i][j]=max(t[i-1][j],t[i][j-1]);
+                }
+            }
+        }
+        if(t[n][m]==n)
+        {
+            return true;
+        }
+        return false;    
     }
 };
