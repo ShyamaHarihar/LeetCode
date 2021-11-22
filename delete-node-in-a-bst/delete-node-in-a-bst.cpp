@@ -12,52 +12,65 @@
 class Solution {
 public:
     TreeNode* deleteNode(TreeNode* root, int key) {
-    //base case 
-        if(root==NULL)
+    if(root==NULL)
     {
-        return root;
+        return NULL;//base case
     }
-        //Go to left Subtree 
-        if(root->val>key)
+        if(root->val==key)
         {
-            root->left=deleteNode(root->left,key);
+            return helper(root);
         }
-        //Go to right subtree
-        else if(root->val<key)
+        TreeNode* r=root;
+        while(root!=NULL)
         {
-            root->right=deleteNode(root->right,key);
-        }
-        //Node found case 
-        else {
-            //We have three cases here 
-//Node found and to be deleted is leaf node and in this case simply return NULL to the parent node
-            if(root->left==NULL && root->right==NULL)
+            if(root->val>key)
             {
-                return NULL;
+                //left subtree
+                if(root->left!=NULL && root->left->val==key)//one node above
+                {
+                    root->left=helper(root->left);
+                    break;
+                }
+                else{
+                    root=root->left;
+                }
             }
-            //Only one child case 
-            if(root->left==NULL || root->right==NULL)
+            else
             {
-                TreeNode* temp=root->left?root->left:root->right;//if left is there copy left else copy right 
-                delete(root);
-                return temp;
-                //The whole subtree has to be returned actually not just one node otherwise we could have swapped
+                if(root->right!=NULL && root->right->val==key)
+                {
+                    root->right=helper(root->right);
+                    break;
+                }
+                else
+                {
+                    root=root->right;
+                }
             }
-//Node with two children where we have to use inorder predecessor or inorder successor 
-
-               if(root->left && root->right)
-               {
-                   TreeNode* t=root->right;//First go to right subtree to find the leftmost value or minimum value which is the inorder predecesssor 
-                   while(t->left!=NULL)
-                   {
-                       t=t->left;
-                   }
-                   root->val=t->val;
-                   //Now we have a duplicate value in the right subtree now this is a 0 or 1 child case so delete that duplicate now
-                   root->right=deleteNode(root->right,root->val);
-               }
         }
-     //returning updated root
-        return root;
+        return r;
+    }
+    TreeNode* helper(TreeNode* root)
+    {
+        if(root->left==NULL)
+        {
+            return root->right;
+        }
+        else if(root->right==NULL)
+        {
+            return root->left;
+        }
+        TreeNode* rightChild=root->right;
+        TreeNode* lastRight=findLastRight(root->left);
+        lastRight->right=rightChild;
+        return root->left;
+    }
+    TreeNode* findLastRight(TreeNode* root)
+    {
+        if(root->right==NULL)
+        {
+            return root;
+        }
+        return findLastRight(root->right);
     }
 };
