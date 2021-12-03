@@ -20,15 +20,14 @@ public:
         targetSum=targetSum-root->val;
         if(root->left==NULL && root->right==NULL && targetSum==0)
         {
-            flag=true;
+           flag=true;
         }
         dfs(root->left,targetSum,flag);
         dfs(root->right,targetSum,flag);
     }
     bool hasPathSum(TreeNode* root, int targetSum) {
-    //We traverse this tree in DFS approach top down
     bool flag=false;
     dfs(root,targetSum,flag);
-    return flag;
+    return flag;    
     }
 };
