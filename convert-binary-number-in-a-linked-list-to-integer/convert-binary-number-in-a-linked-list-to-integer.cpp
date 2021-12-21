@@ -12,12 +12,14 @@ class Solution {
 public:
     int getDecimalValue(ListNode* head) {
     ListNode* temp=head;
-    int res=0;
-        while(temp)
-        {
-            res=res*2+temp->val;
-            temp=temp->next;
-        }
-        return res;
+    int ans=0;
+    //Assume that it is 2 power 0 at the start and then when we discover new nodes, just   multiply by 2 
+    while(temp!=NULL)
+    {
+        ans*=2;
+        ans+=temp->val;
+        temp=temp->next;
+    }
+        return ans;
     }
 };
