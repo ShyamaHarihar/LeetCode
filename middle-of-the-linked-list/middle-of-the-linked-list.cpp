@@ -11,17 +11,15 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-    ListNode* f=head;
-    ListNode* s=head;
-        if(head==NULL || head->next==NULL)
+    ListNode* fast=head;
+    ListNode* slow=head;
+        while(fast!=NULL && fast->next!=NULL)//terminate on these 2 cases
         {
-            return head;
+            //in the case of even length fast will point to NULL
+            //in the case of odd length fast will reach the tail Node
+            fast=fast->next->next;
+            slow=slow->next;
         }
-        while(f && f->next)
-        {
-            f=f->next->next;
-            s=s->next;
-        }
-        return s;
+        return slow;
     }
 };
