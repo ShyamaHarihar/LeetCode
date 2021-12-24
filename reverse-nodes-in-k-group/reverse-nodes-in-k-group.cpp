@@ -12,33 +12,43 @@ class Solution {
 public:
     void reverse(ListNode* s,ListNode* e)
     {
-        ListNode* prev=NULL,* curr=s,*n=s->next;
-        while(prev!=e)
-            //here we have no NULL nodes as such but we know that the moment p reaches end node according to parameters then we should stop
+        ListNode* p=NULL;
+        ListNode* c=s;
+        ListNode* n=s->next;
+        while(p!=e)
         {
-        curr->next=prev;
-        prev=curr;
-        curr=n;
-        if(n!=NULL) n=n->next; 
+            c->next=p;
+            p=c;
+            c=n;
+            if(n!=NULL) n=n->next;
         }
-        
     }
     ListNode* reverseKGroup(ListNode* head, int k) {
-    //edge cases
-    if(head==NULL || head->next==NULL || k==1) return head;
-    ListNode* s=head;
-    ListNode* e=head;
-    int jump=k-1;//k-1 jumps to create first group for the reversal
-    while(jump--)
+    if(head==NULL || head->next==NULL || k==1)
     {
-        e=e->next;
-        if(e==NULL) return head;//because we might have lesser nodes left to group them as 'k'
+        return head;
     }
-        //now we have start and end for the first group
-    //now recursion will reverse the rest of the groups
-    ListNode* newhead=reverseKGroup(e->next,k);
-    reverse(s,e);
-    s->next=newhead;
-    return e;
+        ListNode* dummy=new ListNode(-1);//dummy node
+        dummy->next=head;
+        ListNode* bs=dummy,*e=head;
+        int i=0;
+        while(e!=NULL)
+        {
+            i++;
+            if(i%k==0)
+            {
+               ListNode* s=bs->next,* temp=e->next;
+                reverse(s,e);//reversal is done
+                //now connection tricky part is this only
+                bs->next=e;
+                s->next=temp;
+                bs=s;
+                e=temp;
+            }
+            else{
+                e=e->next;
+            }
+        }
+        return dummy->next;
     }
 };
