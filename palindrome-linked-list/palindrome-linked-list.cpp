@@ -10,20 +10,43 @@
  */
 class Solution {
 public:
+    ListNode* reverse(ListNode* head)
+    {
+        if(head==NULL)
+        {
+            return head;
+        }
+        ListNode* prev=NULL,* curr=head,* n=head->next;
+        while(curr!=NULL)
+        {
+            curr->next=prev;
+            prev=curr;
+            curr=n;
+            if(n) n=n->next;
+        }
+        return prev;
+    }
     bool isPalindrome(ListNode* head) {
-    string s="";
-    ListNode* temp=head;
-        while(temp)
+    ListNode* slow=head,* fast=head;
+//now we need to find the node one behind the middle and therefore, we need to change the condition
+    while(fast->next!=NULL && fast->next->next!=NULL)
+    {
+        fast=fast->next->next;
+        slow=slow->next;
+    }
+    //slow points to one node behind mid
+    slow->next=reverse(slow->next);
+    ListNode* start=head,* mid=slow->next;
+    while(mid!=NULL)
+    {
+        if(start->val!=mid->val)
         {
-            s+=temp->val;
-            temp=temp->next;
+            return false;
         }
-        string s1=s;
-        reverse(s.begin(),s.end());
-        if(s==s1)
-        {
-            return true;
-        }
-        return false;
+        start=start->next;
+        mid=mid->next;
+    }
+    slow->next=reverse(slow->next);//do not change the datastructure so undo it
+        return true;    
     }
 };
