@@ -13,10 +13,8 @@ public:
     ListNode* middleNode(ListNode* head) {
     ListNode* fast=head;
     ListNode* slow=head;
-        while(fast!=NULL && fast->next!=NULL)//terminate on these 2 cases
+        while(fast!=NULL && fast->next!=NULL)
         {
-            //in the case of even length fast will point to NULL
-            //in the case of odd length fast will reach the tail Node
             fast=fast->next->next;
             slow=slow->next;
         }
