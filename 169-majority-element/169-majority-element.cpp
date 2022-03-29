@@ -1,20 +1,24 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-    unordered_map<int,int> mp;
-    int s=nums.size();
-    int res=0;
-    for(auto it:nums)
+    //hashmap approach is possible o(nlogn)
+        //This is moore voting algorithm
+    int count=0;
+    int element=0;
+    for(int i=0;i<nums.size();i++)
     {
-        mp[it]++;
-    }
-        for(auto it:mp)
+        if(count==0)
         {
-            if(it.second>s/2)
-            {
-                res = it.first;
-            }
+            element=nums[i];
         }
-        return res;
+        if(nums[i]==element)
+        {
+            count++;
+        }
+        else{
+            count--;
+        }
+    }
+        return element;
     }
 };
