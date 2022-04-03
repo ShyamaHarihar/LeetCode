@@ -1,27 +1,27 @@
 class Solution {
 public:
-    int helper(int start,int end,int target,vector<int>& nums)
+    int helper(int s,int e,vector<int>& nums,int target)
     {
-       if(start<=end)
-       {
-           int mid=start+(end-start)/2;
-           if(nums[mid]==target)
-           {
-               return mid;
-           }
-           else if(nums[mid]>target)
-           {
-               return helper(0,mid-1,target,nums);
-           }
-           else{
-               return helper(mid+1,end,target,nums);
-           }
-       }
-       return -1;
+        while(s<=e)
+        {
+            int mid=s+(e-s)/2;
+            if(nums[mid]==target)
+            {
+                return mid;
+            }
+            else if(nums[mid]>target)
+            {
+                return helper(0,mid-1,nums,target);
+            }
+            else{
+                return helper(mid+1,e,nums,target);
+            }
+        }
+        return -1;
     }
     int search(vector<int>& nums, int target) {
-        int start=0;
-        int end=nums.size()-1;
-        return helper(start,end,target,nums);    
+        int s=0;
+        int e=nums.size()-1;
+        return helper(s,e,nums,target);    
     }
 };
