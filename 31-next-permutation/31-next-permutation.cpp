@@ -1,6 +1,7 @@
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
+    //Daily Challenge
     int p=nums.size()-1;
         while(p>=1 && nums[p-1]>=nums[p])
         {
