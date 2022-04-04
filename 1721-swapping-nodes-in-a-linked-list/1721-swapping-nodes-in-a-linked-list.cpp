@@ -26,7 +26,11 @@ public:
             s=s->next;
         }
         ListNode* b=s;
-        swap(a->val,s->val);
+        int temp;
+        temp=a->val;
+        a->val=s->val;
+        s->val=temp;
+        //swap(a->val,s->val);
         return head;
     }
 };
