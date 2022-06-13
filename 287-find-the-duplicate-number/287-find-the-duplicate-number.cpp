@@ -1,19 +1,21 @@
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-    int s=nums[0];
-    int f=nums[0];
+    //Linked List cycle method
+        int slow=nums[0];
+        int fast=nums[0];
         do{
-            s=nums[s];
-            f=nums[nums[f]];
-            
-        }while(s!=f);
-        f=nums[0];
-        while(f!=s)
+            slow=nums[slow];
+            fast=nums[nums[fast]];
+        }while(fast!=slow);
+        //Take fast to first element
+        fast=nums[0];
+        //now where they meet is duplicate
+        while(fast!=slow)
         {
-            f=nums[f];
-            s=nums[s];
+            slow=nums[slow];
+            fast=nums[fast];
         }
-        return s;
+        return slow;
     }
 };
