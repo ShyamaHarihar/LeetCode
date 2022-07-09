@@ -9,20 +9,20 @@ void bfs(int node,unordered_map<int,bool> &visited,vector<int> adj[],vector<int>
 {
     queue<int> q;
     q.push(node);
-    ans.push_back(node);
+    //ans.push_back(node);
     visited[node]=1;
     while(!q.empty())
     {
         int frontnode=q.front();
         q.pop();
-        //ans.push_back(frontnode);
+        ans.push_back(frontnode);
         for(auto it:adj[frontnode])
         {
             if(!visited[it])
             {
                 q.push(it);
                 visited[it]=1;
-                ans.push_back(it);
+                //ans.push_back(it);
             }
         }
     }
