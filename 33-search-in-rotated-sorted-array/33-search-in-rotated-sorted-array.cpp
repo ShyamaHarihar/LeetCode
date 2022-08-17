@@ -1,40 +1,37 @@
 class Solution {
 public:
-    int helper(int s,int e,vector<int>& nums,int target)
-    {
-        while(s<=e)
+    int search(vector<int>& nums, int target) {
+    
+        int start=0;
+        int end=nums.size()-1;
+        while(start<=end)
         {
-            int mid=s+(e-s)/2;
+            int mid=start+(end-start)/2;
             if(nums[mid]==target)
             {
                 return mid;
             }
-            if(nums[s]<=nums[mid])
+            if(nums[start]<=nums[mid])
             {
-               if(target<nums[s] || target>nums[mid])
-               {
-                   s=mid+1;
-               }
-                else{
-                    e=mid-1;
-                }
-            }
-            else if(nums[s]>nums[mid]){
-                if(nums[mid]>target || nums[e]<target)
+                if(target<nums[start] || target>nums[mid])
                 {
-                    e=mid-1;
+                    start=mid+1;
                 }
                 else{
-                    s=mid+1;
+                    end=mid-1;
                 }
-                
             }
+            else if(nums[start]>nums[mid])
+            {
+                if(nums[mid]>target || nums[end]<target)
+                {
+                    end=mid-1;
+                }
+                else{
+                    start=mid+1;
+                }
+            }            
         }
         return -1;
-    }
-    int search(vector<int>& nums, int target) {
-    int s=0;
-    int e=nums.size()-1;
-        return helper(s,e,nums,target);
     }
 };
