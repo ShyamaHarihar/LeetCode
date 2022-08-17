@@ -1,19 +1,19 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-    unordered_map<int,int> mp;
-    vector<int> ans;
+    vector<int> res;
+        unordered_map<int,int> mp;
         for(int i=0;i<nums.size();i++)
         {
             if(mp.find(target-nums[i])!=mp.end())
             {
-                ans.push_back(i);//current index
-                ans.push_back(mp[target-nums[i]]);//the index which is stored in hashmap as num,index value
+                res.push_back(i);
+                res.push_back(mp[target-nums[i]]);
             }
             else{
-                mp[nums[i]]=i;//store number and index as pair
+                mp[nums[i]]=i;//store it as number and index pair
             }
         }
-        return ans;
+        return res;
     }
 };
